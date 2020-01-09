@@ -1,25 +1,22 @@
 #include <stdio.h>
-#include <string.h>
+#include <stdlib.h>
 #include "ex.h"
 
 #define LINE 256
 
-int main(int argc,char argv[]){
-	char type = argv[1];
-	char line[LINE];
+int main(int argc,char *argv[]){
+	char line[LINE], c, type;
+	if(argc > 1){
+		type = *argv[1];
+	}
 	int line_length = 0, num_of_input = 0;
 	char* p_line = line;
-	char c;
 	// init root
-	node* root = newNode();
-
-/*	if(!(root)){
-		printf("faild to malloc");
-		return 0;
-	}*/
+	node* root = NULL;
+	root = newNode();
 
 	while(1) {
-		c = getchar();       // Get one character from the input
+		c = getchar();
 		if (c == EOF) {
 			break; }
 		num_of_input++;
@@ -29,14 +26,13 @@ int main(int argc,char argv[]){
 			p_line = p_line + line_length;
 			line_length = 0;
 		}
-		// fill the array
 		else
 			*(p_line + line_length++) = c;
 	}
 	char words[num_of_input];
-	printWords(type, root, words);
+	char *p = words;
+	printWords(type, root, p);
 	freeMemory(&root);
-	printf("free memory");
 
 	return 0;
 }

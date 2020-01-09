@@ -27,7 +27,7 @@ node* newNode(){
 
 	if(TrieNode){
 
-		TrieNode->hasChildren = false;
+		TrieNode->hasChildren = true;
 		TrieNode->count = 0;
 
 		for (int i = 0; i < NUM_LETTERS; i++)
@@ -126,13 +126,17 @@ void printWordDefualt(node* current, char* wordArray, int index)
 	}
 }
 
+/**
+ * print the words in reverse Alphabet order with the number of appearance of each word
+ * recrusivly
+ */
 void printWordReverse(node* current, char* wordArray, int index){
 	if(current == NULL)
 		return;
 
 	if(current->endWord){
 
-		// add space
+		// add tab
 		*(wordArray + index++) = '\t';
 		// number of appearance
 		*(wordArray + index++) = current->count + '0';
@@ -152,6 +156,10 @@ void printWordReverse(node* current, char* wordArray, int index){
 	}
 }
 
+/**
+ * function that direct the arguments to the correct print (default or reverse)
+ * by checking type
+ */
 void printWords(char type, node *current, char *word){
 	unsigned int word_index = 0;
 	if(type == 'r'){
@@ -160,44 +168,25 @@ void printWords(char type, node *current, char *word){
 	else{
 		printWordDefualt(current, word, word_index);
 	}
+
 }
 
 
+/**
+ *
+ */
 void freeMemory(node** current){
 	if(*current == NULL)
 		return;
 
 	if((*current)->hasChildren){
 		for(int i=0; i<NUM_LETTERS; i++){
-			if((*current)->children[i] != NULL)
+			if((*current)->children[i] != NULL){
 				freeMemory(&((*current)->children[i]));
+				(*current)->children[i] = NULL;
+			}
 		}
 	}
 	free(*current);
 	*current = NULL;
 }
-
-
-/*int main(){
-	char word[6][4] = {"aaa","bbb","abc", "bac","abc"};
-	node* root = newNode();
-
-	for(int i =0 ; i < 6; i++){
-		insertWord(word[i], root);
-	}
-
-	char words[256];
-	printWords('o',root, words);
-	freeMemory(&root);
-	printf("free memory");
-
-	return 0;
-}*/
-
-
-/*void swap(int a, int b){
-	int temp = a;
-	a = b;
-	b = temp;
-}*/
-
