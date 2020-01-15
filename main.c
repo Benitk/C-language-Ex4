@@ -30,7 +30,8 @@ int main(int argc,char *argv[]){
 		if (c == EOF) {
 			break; }
 		num_of_input++;
-		if(c == '\n' || c == '\t' || c == ' '){
+		//char isn't letter
+		if(c < 65 || (c > 90 && c < 97) || c > 122){
 			*(p_line + line_length++) = '\0';
 			insertWord(p_line, root);
 			p_line = p_line + line_length;

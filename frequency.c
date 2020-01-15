@@ -57,9 +57,6 @@ void insertWord(char *word, node *current){
 	if(strlen(word) == 0 || current == NULL)
 		return;
 
-	// char isn't letter
-	if(*word < 65 || (*word > 90 && *word < 97) || *word > 122)
-		insertWord(word+1,current);
 
 	// change Capital to lower
 	*word = tolower(*word);
@@ -96,6 +93,7 @@ void insertWord(char *word, node *current){
 			insertWord(word+1,current->children[index]);
 		}
 	}
+
 }
 //print the words in Alphabet order with the number of appearance of each word
 //Recursively
@@ -127,8 +125,8 @@ void printWordDefualt(node* current, char* wordArray, int index)
 }
 
 
- //print the words in reverse Alphabet order with the number of appearance of each word
- //Recursively
+//print the words in reverse Alphabet order with the number of appearance of each word
+//Recursively
 
 void printWordReverse(node* current, char* wordArray, int index){
 	if(current == NULL)
@@ -173,8 +171,8 @@ void printWords(char type, node *current, char *word){
 
 
 
- // free memory recursive
- // childs first then parent
+// free memory recursive
+// childs first then parent
 void freeMemory(node** current){
 	if(*current == NULL)
 		return;
