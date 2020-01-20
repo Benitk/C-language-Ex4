@@ -19,7 +19,6 @@ int main(int argc,char *argv[]){
 	}
 
 	// Initialize array
-	char* temp_arr = NULL;
 	char* arr = NULL;
 	arr = malloc(capacity * sizeof(char));
 	// Initialize root of the trie
