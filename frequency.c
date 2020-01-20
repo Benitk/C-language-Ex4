@@ -10,7 +10,7 @@
 // parameter count - count number of words appearance
 typedef struct node{
 	char letter;
-	long unsigned int count;
+	unsigned long int count;
 	struct node* children[NUM_LETTERS];
 	bool endWord;
 	bool hasChildren;
@@ -105,14 +105,13 @@ void printWordDefualt(node* current, char* wordArray, int index)
 
 	if(current->endWord){
 
-		// add space
-		*(wordArray + index++) = '\t';
-		// number of appearance
-		*(wordArray + index++) = current->count + '0';
 		// add finish of string
 		*(wordArray + index++) = '\0';
 
-		printf("%s\n", wordArray);
+		printf("%s\t", wordArray);
+
+		// print number of appearance
+		printf("%lu\n", current->count);
 
 		wordArray = wordArray + index;
 	}
@@ -134,14 +133,13 @@ void printWordReverse(node* current, char* wordArray, int index){
 
 	if(current->endWord){
 
-		// add tab
-		*(wordArray + index++) = '\t';
-		// number of appearance
-		*(wordArray + index++) = current->count + '0';
 		// add finish of string
 		*(wordArray + index++) = '\0';
 
-		printf("%s\n", wordArray);
+		printf("%s\t", wordArray);
+
+		// print number of appearance
+		printf("%lu\n", current->count);
 
 		wordArray = wordArray + index;
 	}
