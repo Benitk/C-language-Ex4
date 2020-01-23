@@ -113,7 +113,11 @@ void printWordDefualt(node* current, char* wordArray, int index)
 		// print number of appearance
 		printf("%lu\n", current->count);
 
-		wordArray = wordArray + index;
+		// protect for not losing children
+		if(!current->hasChildren)
+			wordArray = wordArray + index;
+		else
+			index--;
 	}
 	for(int i=0; i<NUM_LETTERS; i++){
 		if(current->children[i] != NULL){
@@ -141,7 +145,11 @@ void printWordReverse(node* current, char* wordArray, int index){
 		// print number of appearance
 		printf("%lu\n", current->count);
 
-		wordArray = wordArray + index;
+		// protect for not losing children
+		if(!current->hasChildren)
+			wordArray = wordArray + index;
+		else
+			index--;
 	}
 
 	for(int i=(NUM_LETTERS-1); i>=0; i--){
